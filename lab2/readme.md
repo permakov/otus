@@ -23,8 +23,8 @@ PC-1	| NIC	| 192.168.1.2	| 255.255.255.0
 Настроил базовые параметры каждого коммутатора.    
 
 Конфигурации коммутаторов:  
-[Конфигурация коммутатора S1](https://github.com/permakov/otus/blob/main/lab2/Screenshot_2.jpg)  
-[Конфигурация коммутатора S2](https://github.com/permakov/otus/blob/main/lab2/Screenshot_1.jpg)  
+[Конфигурация PC-0](https://github.com/permakov/otus/blob/main/lab2/Screenshot_2.jpg)  
+[Конфигурация PC-1](https://github.com/permakov/otus/blob/main/lab2/Screenshot_1.jpg)  
 
 
 ### Изучение таблицы МАС-адресов коммутатора
@@ -32,10 +32,10 @@ PC-1	| NIC	| 192.168.1.2	| 255.255.255.0
 МАС-адреса сетевых устройств:  
 Устройство  | Mac
 ------------|-----
-S1 F0/1 | 0050.0f67.dc01
-S2 F0/1 | 0003.e414.a101
-PC-0 | 0001.C786.1BEB
-PC-1 | 0001.C73E.DD1C
+S1 F0/1 | 0090.2bb6.5001
+S2 F0/1 | 00e0.f943.b6e1
+PC-0 | 000C.CF53.2E82
+PC-1 | 0010.117E.7961
 
 ### Просмотр таблицы МАС-адресов коммутатора  
 
