@@ -57,6 +57,6 @@ PC-1 | 0010.117E.7961
 Очистил таблицу mac-адресов, после чего быстро отобразил таблицу mac адресов.   
 Таблица mac-адресав S1  
 ![](https://github.com/permakov/otus/blob/main/lab2/Mac%20S1-3.jpg)  
-Таблица mac-адресав S2
-![](https://github.com/permakov/otus/blob/main/lab2/Mac%20S2-3.jpg)
+Таблица mac-адресав S2  
+![](https://github.com/permakov/otus/blob/main/lab2/Mac%20S2-3.jpg)  
 
