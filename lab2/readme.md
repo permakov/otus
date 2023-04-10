@@ -72,5 +72,5 @@ PC-1 | 0010.117E.7961
 Очистил ARPтаблицу.  
 Пропинговал занова все устройства. Получил от всех ответы.
 Таблица Mac-адресов S2:  
-![](https://github.com/permakov/otus/blob/main/lab2/Mac%20S2-1.jpg)
+![](https://github.com/permakov/otus/blob/main/lab2/Mac%20S2-4.jpg)
 
