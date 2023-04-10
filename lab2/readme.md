@@ -23,8 +23,8 @@ PC-1	| NIC	| 192.168.1.2	| 255.255.255.0
 Настроил базовые параметры каждого коммутатора.    
 
 Конфигурации коммутаторов:  
-[Конфигурация PC-0](https://github.com/permakov/otus/blob/main/lab2/Screenshot_2.jpg)  
-[Конфигурация PC-1](https://github.com/permakov/otus/blob/main/lab2/Screenshot_1.jpg)  
+[Конфигурация PC-0](https://github.com/permakov/otus/blob/main/lab2/PC0.jpg)  
+[Конфигурация PC-1](https://github.com/permakov/otus/blob/main/lab2/PC1.jpg)  
 
 
 ### Изучение таблицы МАС-адресов коммутатора
@@ -39,15 +39,17 @@ PC-1 | 0010.117E.7961
 
 ### Просмотр таблицы МАС-адресов коммутатора  
 
-Сразу после настройки коммутатором и ПК в таблице маршрутизации каждого из коммутаторов пристствует только одна запить, которая содержит mac-адрес соседнего коммутатора за портами f0/1
-sh mac address-table   
+Сразу после настройки коммутатором и ПК в таблице маршрутизации каждого из коммутаторов пристствует только одна запить, которая содержит mac-адрес соседнего коммутатора за портами f0/1  
+
+[таблица Mac-адресов S1](https://github.com/permakov/otus/blob/main/lab2/Mac%20S1-1.jpg)
+[таблица Mac-адресов S2](https://github.com/permakov/otus/blob/main/lab2/Mac%20S2-1.jpg)
+
+После отправки эхо-запросов таблица Mac-адресов изменилась:
+
+[таблица Mac-адресов S1](https://github.com/permakov/otus/blob/main/lab2/Mac%20S1-2.jpg)
+[таблица Mac-адресов S2](https://github.com/permakov/otus/blob/main/lab2/Mac%20S2-2N.jpg)
            
-Vlan  |  Mac Address  |     Type   |     Ports
-----| -----------|-------| -----|
-   1  |  0001.6346.b6c8 |   DYNAMIC  |   Fa0/1
-   1   | 0006.2a4a.7701 |   DYNAMIC |    Fa0/1
-   1  |  000c.85a6.1214 |   DYNAMIC  |   Fa0/1
-   1 |   00e0.f787.b2e5 |   DYNAMIC  |   Fa0/18
+
 
 ### Очистил таблицу МАС-адресов коммутатора S2 и снова отобразил таблицу МАС-адресов.
 
