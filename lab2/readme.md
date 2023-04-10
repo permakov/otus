@@ -41,13 +41,13 @@ PC-1 | 0010.117E.7961
 
 Сразу после настройки коммутатором и ПК в таблице маршрутизации каждого из коммутаторов пристствует только одна запить, которая содержит mac-адрес соседнего коммутатора за портами f0/1  
 
-[таблица Mac-адресов S1](https://github.com/permakov/otus/blob/main/lab2/Mac%20S1-1.jpg)
-[таблица Mac-адресов S2](https://github.com/permakov/otus/blob/main/lab2/Mac%20S2-1.jpg)
+[таблица Mac-адресов S1](https://github.com/permakov/otus/blob/main/lab2/Mac%20S1-1.jpg)  
+[таблица Mac-адресов S2](https://github.com/permakov/otus/blob/main/lab2/Mac%20S2-1.jpg)  
 
 После отправки эхо-запросов таблица Mac-адресов изменилась:
 
-[таблица Mac-адресов S1](https://github.com/permakov/otus/blob/main/lab2/Mac%20S1-2.jpg)
-[таблица Mac-адресов S2](https://github.com/permakov/otus/blob/main/lab2/Mac%20S2-2N.jpg)
+[таблица Mac-адресов S1](https://github.com/permakov/otus/blob/main/lab2/Mac%20S1-2.jpg)  
+[таблица Mac-адресов S2](https://github.com/permakov/otus/blob/main/lab2/Mac%20S2-2N.jpg)  
            
 
 
