@@ -23,8 +23,10 @@ PC-1	| NIC	| 192.168.1.2	| 255.255.255.0
 Настроил базовые параметры каждого коммутатора.    
 
 Конфигурации коммутаторов:  
-[Конфигурация PC-0](https://github.com/permakov/otus/blob/main/lab2/PC0.jpg)  
-[Конфигурация PC-1](https://github.com/permakov/otus/blob/main/lab2/PC1.jpg)  
+Конфигурация PC-0  
+![](https://github.com/permakov/otus/blob/main/lab2/PC0.jpg)  
+Конфигурация PC-1  
+![](https://github.com/permakov/otus/blob/main/lab2/PC1.jpg)  
 
 
 ### Изучение таблицы МАС-адресов коммутатора
@@ -40,14 +42,15 @@ PC-1 | 0010.117E.7961
 ### Просмотр таблицы МАС-адресов коммутатора  
 
 Сразу после настройки коммутатором и ПК в таблице маршрутизации каждого из коммутаторов пристствует только одна запить, которая содержит mac-адрес соседнего коммутатора за портами f0/1  
-
-[таблица Mac-адресов S1](https://github.com/permakov/otus/blob/main/lab2/Mac%20S1-1.jpg)  
-[таблица Mac-адресов S2](https://github.com/permakov/otus/blob/main/lab2/Mac%20S2-1.jpg)  
+Таблица Mac-адресов S1:  
+![](https://github.com/permakov/otus/blob/main/lab2/Mac%20S1-1.jpg)  
+Таблица Mac-адресов S2:  
+![](https://github.com/permakov/otus/blob/main/lab2/Mac%20S2-1.jpg)  
 
 После отправки эхо-запросов таблица Mac-адресов изменилась:
-
-[таблица Mac-адресов S1](https://github.com/permakov/otus/blob/main/lab2/Mac%20S1-2.jpg)  
-[таблица Mac-адресов S2](https://github.com/permakov/otus/blob/main/lab2/Mac%20S2-2N.jpg)  
+Таблица Mac-адресов S1:  
+![](https://github.com/permakov/otus/blob/main/lab2/Mac%20S1-2.jpg)  
+![](https://github.com/permakov/otus/blob/main/lab2/Mac%20S2-2N.jpg)  
            
 Если на шаге 1 не были выписаны MAC-адрес устройств, то можно узать их, если знать какому порту они подключены.
 Однако, если данное устройство подключено через промежуточный коммутатор, то мы увидим, только то, что это устройство находится за портом, который идет к соседнему коммутатору. Так же данное устройство должно было быть активно, что бы от него пришли пакеты, и коммутатор узнал, что за устройство к нему подключено.
