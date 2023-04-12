@@ -33,5 +33,5 @@ PC-B | 	NIC |	2001:db8:acad: a::3 |	64 |	fe80::1
 С PC-A отправил эхо-запросы на интерфейс G0/1 на R1 (FE80::1) управления S1 (FE80::2)  
 ![](https://github.com/permakov/otus/blob/main/lab4/Ping%20_S1_R1.jpg)  
 Коммандой tracert проверил наличие сквозного подключения между PC и отправил эхо-запросы между PC  
-![](https://github.com/permakov/otus/blob/main/lab4/Ping_A.jpg)
+![](https://github.com/permakov/otus/blob/main/lab4/Ping_A.jpg)  
 ![](https://github.com/permakov/otus/blob/main/lab4/Ping_B.jpg)  
