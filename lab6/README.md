@@ -43,4 +43,4 @@ VLAN |	Имя |	Назначенный интерфейс
 
 ###  Создание сетей VLAN и назначение портов коммутатора
 
-![]()
+![](https://github.com/permakov/otus/blob/main/lab6/S1_VLAN_2.jpg)
