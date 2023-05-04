@@ -56,3 +56,11 @@ VLAN |	Имя |	Назначенный интерфейс
 ![](https://github.com/permakov/otus/blob/main/lab6/S2_trunk_2.jpg)  
 ![](https://github.com/permakov/otus/blob/main/lab6/S1_trunk.jpg)  
 ![](https://github.com/permakov/otus/blob/main/lab6/S1_trunk_to_R1.jpg)  
+
+###  Настройка маршрутизации между сетями VLAN  
+Настроил подинтерфейсы для каждой VLAN, как указано в таблице IP-адресации. Все подинтерфейсы используют инкапсуляцию 802.1Q  
+![](https://github.com/permakov/otus/blob/main/lab6/R1_subint.jpg)  
+
+### Проверка работы маршрутизации между VLAN  
+![](https://github.com/permakov/otus/blob/main/lab6/PING_1.jpg)  
+![](https://github.com/permakov/otus/blob/main/lab6/PING_2.jpg)  
