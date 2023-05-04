@@ -64,7 +64,7 @@ S3 |	VLAN 1 |	192.168.1.3 |	255.255.255.0
 ![](https://github.com/permakov/otus/blob/main/lab7/SW3_span_1.jpg)  
 
 Изменил стоимость порта:  
-![](https://github.com/permakov/otus/blob/main/lab7/SW3_span_2jpg)  
+![](https://github.com/permakov/otus/blob/main/lab7/SW3_span_2.jpg)  
 
 Bзменения протокола spanning-tree:
 
