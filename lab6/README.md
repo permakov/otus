@@ -44,4 +44,15 @@ VLAN |	Имя |	Назначенный интерфейс
 ###  Создание сетей VLAN и назначение портов коммутатора
 
 ![](https://github.com/permakov/otus/blob/main/lab6/S1_VLAN_2.jpg)
-![]()
+![](https://github.com/permakov/otus/blob/main/lab6/S2_VLAN_2.jpg)  
+
+
+### Конфигурация магистрального канала стандарта 802.1Q между коммутаторами  
+
+Вручную настройте магистральный между коммутаторами S1 и S2.  
+Вручную настройте магистральный между коммутатором S1 и маршрутизатором R1  
+  
+![](https://github.com/permakov/otus/blob/main/lab6/S2_trunk.jpg)  
+![](https://github.com/permakov/otus/blob/main/lab6/S2_trunk_2.jpg)  
+![](https://github.com/permakov/otus/blob/main/lab6/S1_trunk.jpg)  
+![](https://github.com/permakov/otus/blob/main/lab6/S1_trunk_to_R1.jpg)  
