@@ -70,6 +70,12 @@ Bзменения протокола spanning-tree:
 
 ![](https://github.com/permakov/otus/blob/main/lab7/SW3_span_3.jpg)  
 
+Удалиk изменения стоимости портаи проверил состояние портов:  
+
+![](https://github.com/permakov/otus/blob/main/lab7/SW3_span_4.jpg)  
+
+
+
 
 
 
