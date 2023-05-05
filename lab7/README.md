@@ -70,9 +70,20 @@ Bзменения протокола spanning-tree:
 
 ![](https://github.com/permakov/otus/blob/main/lab7/SW3_span_3.jpg)  
 
-Удалиk изменения стоимости портаи проверил состояние портов:  
+Удалил изменения стоимости порта и проверил состояние портов:  
 
-![](https://github.com/permakov/otus/blob/main/lab7/SW3_span_4.jpg)  
+![](https://github.com/permakov/otus/blob/main/lab7/SW3_span_4.jpg)  \
+
+### Наблюдение за процессом выбора протоколом STP порта, исходя из приоритета портов
+
+Включил ранее выключенные порты на всех коммутаторах.
+Через 30 секунд посмотрел информацию по STP на каждом из коммутаторов:
+
+![](https://github.com/permakov/otus/blob/main/lab7/sw1_all_int.jpg)  
+![](https://github.com/permakov/otus/blob/main/lab7/sw2_all_int.jpg)  
+![](https://github.com/permakov/otus/blob/main/lab7/sw3_all_int.jpg)  
+
+
 
 
 
