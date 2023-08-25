@@ -16,4 +16,5 @@ PC-B |	NIC |	DHCP|	255.255.255.0
 
 ### Настройка маршрутизатора R1
 
-![](
+![](https://github.com/permakov/otus/blob/main/lab9/R1.jpg)  
+![](https://github.com/permakov/otus/blob/main/lab9/R2.jpg)  
