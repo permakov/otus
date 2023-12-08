@@ -3,7 +3,7 @@
 ## DHCPv4
 
 ### Топология сети
-![alt-текст](https://github.com/permakov/otus/blob/main/lab2/Screenshot_3.jpg "Топология сети")  
+![alt-текст](https://github.com/permakov/otus/blob/main/DHCP/topology.jpg "Топология сети")  
 
 ### Таблица адресации
 
