@@ -309,4 +309,270 @@ VPCS> ping 192.168.1.1
 84 bytes from 192.168.1.1 icmp_seq=5 ttl=254 time=3.579 ms
 
 VPCS>
+
 ```
+
+## DHCPv6
+
+### Топология сети  
+![alt-текст](https://github.com/permakov/otus/blob/main/DHCP/topology.jpg "Топология сети")  
+
+### Таблица адресации  
+
+Устройство | Интерфейс | IPv6-адрес
+----------- | --------- | --------
+R1 | G0/0/0 | 2001:db8:acad:2::1/64
+R1 | G0/0/0 | fe80::1
+R1 | G0/0/1 | 2001:db8:acad:1::1/64
+R1 | G0/0/1 | fe80::1
+R2 | G0/0/0 | 2001:db8:acad:2::2/64
+R2 | G0/0 | fe80::2
+R2 | G0/0/1 | 2001:db8:acad:3::1/64
+R2 | G0/0/1 | fe80::1
+PC-A | NIC | DHCP
+PC-B | NIC | DHCP
+
+### Цели  
+ Создание сети и настройка основных параметров устройства  
+ Проверка назначения адреса SLAAC от R1  
+ Настройка и проверка сервера DHCPv6 без гражданства на R1  
+ Настройка и проверка состояния DHCPv6 сервера на R1  
+ Настройка и проверка DHCPv6 Relay на R2  
+
+### Создание сети и настройка основных параметров устройства  
+
+Основные настройки устройств были выполнены в первой части данной работы. Дополрительно были назначены адреса IPv6 на интрефейсы маршрутизаторов, включена маршрутизация ipv6:
+
+```
+R1#sh ipv6 int br
+GigabitEthernet0/0     [up/up]
+    FE80::1
+    2001:DB8:ACAD:2::1
+GigabitEthernet0/1     [up/up]
+    unassigned
+GigabitEthernet0/1.100 [up/up]
+    FE80::1
+    2001:DB8:ACAD:1::1
+GigabitEthernet0/1.200 [up/up]
+    unassigned
+Gi0/1.1000             [up/up]
+    unassigned
+GigabitEthernet0/2     [administratively down/down]
+    unassigned
+GigabitEthernet0/3     [administratively down/down]
+    unassigned
+```
+```
+R2#sh ipv6 int br
+GigabitEthernet0/0     [up/up]
+    FE80::2
+    2001:DB8:ACAD:2::2
+GigabitEthernet0/1     [up/up]
+    FE80::1
+    2001:DB8:ACAD:3::1
+GigabitEthernet0/1.100 [up/up]
+    unassigned
+GigabitEthernet0/2     [administratively down/down]
+    unassigned
+GigabitEthernet0/3     [administratively down/down]
+    unassigned
+```
+```
+R1#ping ipv6 2001:DB8:ACAD:3::1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 2001:DB8:ACAD:3::1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+```
+
+#### Проверка назначения адреса SLAAC от R1
+
+```
+C:\Users\User>ipconfig /renew
+
+Windows IP Configuration
+
+
+Ethernet adapter Ethernet:
+
+   Connection-specific DNS Suffix  . : 
+   IPv6 Address. . . . . . . . . . . : 2001:db8:acad:1:116b:14d5:bf27:e599
+   Temporary IPv6 Address. . . . . . : 2001:db8:acad:1:9cfb:9065:6693:57b3
+   Link-local IPv6 Address . . . . . : fe80::116b:14d5:bf27:e599%4
+   Default Gateway . . . . . . . . . : fe80::1%4
+```
+Откуда взялась часть адреса с идентификатором хоста?   
+Эта часть одреса может генерироваться лио на основе mac-адреса, либо быть просто случайной послеовательностью, что в даннос случае мы и имеем.  
+
+#### Настройка и проверка сервера DHCPv6 на R1  
+Выполнена настройка и проверка состояния DHCP-сервера на R1. Цель состоит в том, чтобы предоставить PC-A информацию о DNS-сервере и домене.  
+
+
+```
+C:\Users\User>ipconfig -all
+
+Windows IP Configuration
+
+   Host Name . . . . . . . . . . . . : DESKTOP-TN2CBAB
+   Primary Dns Suffix  . . . . . . . :
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+   DNS Suffix Search List. . . . . . : ccna-lab.com
+
+Ethernet adapter Ethernet:
+
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Intel(R) PRO/1000 MT Network Connection
+   Physical Address. . . . . . . . . : 50-00-00-07-00-00
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   IPv6 Address. . . . . . . . . . . : 2001:db8:acad:1:116b:14d5:bf27:e599(Preferred)
+   Temporary IPv6 Address. . . . . . : 2001:db8:acad:1:2131:819:ad76:58cf(Preferred)
+   Link-local IPv6 Address . . . . . : fe80::116b:14d5:bf27:e599%11(Preferred)
+   Default Gateway . . . . . . . . . : fe80::1%11
+   DHCPv6 IAID . . . . . . . . . . . : 72351744
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-2D-13-2E-0E-50-00-00-07-00-00
+   DNS Servers . . . . . . . . . . . : fe80::1%11
+   NetBIOS over Tcpip. . . . . . . . : Disabled
+
+```
+
+#### Настройте R1 для предоставления DHCPv6 без состояния для PC-A
+```
+ipv6 dhcp pool R1-STATELESS
+ dns-server 2001:DB8:ACAD::254
+ domain-name STATELESS.com
+```
+
+```
+interface GigabitEthernet0/1.100
+ encapsulation dot1Q 100
+ ip address 192.168.1.1 255.255.255.192
+ ipv6 address FE80::1 link-local
+ ipv6 address 2001:DB8:ACAD:1::1/64
+ ipv6 enable
+ ipv6 nd other-config-flag
+ ipv6 dhcp server R1-STATELESS
+```
+Проверка на клиенте:
+
+```
+   C:\Users\User>ipconfig -all
+
+Windows IP Configuration
+
+   Host Name . . . . . . . . . . . . : DESKTOP-TN2CBAB
+   Primary Dns Suffix  . . . . . . . :
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+   DNS Suffix Search List. . . . . . : STATELESS.com
+
+Ethernet adapter Ethernet:
+
+   Connection-specific DNS Suffix  . : STATELESS.com
+   Description . . . . . . . . . . . : Intel(R) PRO/1000 MT Network Connection
+   Physical Address. . . . . . . . . : 50-00-00-07-00-00
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   IPv6 Address. . . . . . . . . . . : 2001:db8:acad:1:116b:14d5:bf27:e599(Preferred)
+   Temporary IPv6 Address. . . . . . : 2001:db8:acad:1:4c05:ca54:9ba2:518(Preferred)
+   Link-local IPv6 Address . . . . . : fe80::116b:14d5:bf27:e599%11(Preferred)
+   Default Gateway . . . . . . . . . : fe80::1%11
+   DHCPv6 IAID . . . . . . . . . . . : 72351744
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-2D-13-2E-0E-50-00-00-07-00-00
+   DNS Servers . . . . . . . . . . . : 2001:db8:acad::254
+   NetBIOS over Tcpip. . . . . . . . : Disabled
+   Connection-specific DNS Suffix Search List :
+                                       STATELESS.com
+```
+
+#### Настройка сервера DHCPv6 с сохранением состояния на R1
+Настрроен R1 для ответа на запросы DHCPv6 от локальной сети на R2  
+```
+ipv6 dhcp pool R2-STATEFUL
+ address prefix 2001:DB8:ACAD:3:AAA::/80
+ dns-server 2001:DB8:ACAD::254
+ domain-name STATEFUL.com
+```
+
+```
+interface GigabitEthernet0/0
+ ip address 10.0.0.1 255.255.255.252
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address FE80::1 link-local
+ ipv6 address 2001:DB8:ACAD:2::1/64
+ ipv6 dhcp server R2-STATEFUL
+```
+
+#### Настройка и проверка ретрансляции DHCPv6 на R2
+Проверьте адрес SLAAC, который генерирует Win-b
+```
+C:\Users\User>ipconfig -all
+
+Windows IP Configuration
+
+   Host Name . . . . . . . . . . . . : DESKTOP-TN2CBAB
+   Primary Dns Suffix  . . . . . . . :
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+   DNS Suffix Search List. . . . . . : ccna-lab.com
+
+Ethernet adapter Ethernet:
+
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Intel(R) PRO/1000 MT Network Connection
+   Physical Address. . . . . . . . . : 50-00-00-08-00-00
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   IPv6 Address. . . . . . . . . . . : 2001:db8:acad:3:adfb:feb8:a22c:571a(Preferred)
+   Temporary IPv6 Address. . . . . . : 2001:db8:acad:3:fc99:3f4b:d7b2:5c10(Preferred)
+   Link-local IPv6 Address . . . . . : fe80::adfb:feb8:a22c:571a%7(Preferred)
+   Default Gateway . . . . . . . . . : fe80::1%7
+   DHCPv6 IAID . . . . . . . . . . . : 72351744
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-2D-13-4A-8A-50-00-00-08-00-00
+   DNS Servers . . . . . . . . . . . : fec0:0:0:ffff::1%1
+                                       fec0:0:0:ffff::2%1
+                                       fec0:0:0:ffff::3%1
+   NetBIOS over Tcpip. . . . . . . . : Disabled
+```
+
+Проверка понфигурации сети на клиенте Win-b
+```
+C:\Users\User>ipconfig -all
+
+Windows IP Configuration
+
+   Host Name . . . . . . . . . . . . : DESKTOP-TN2CBAB
+   Primary Dns Suffix  . . . . . . . :
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+   DNS Suffix Search List. . . . . . : STATEFUL.com
+
+Ethernet adapter Ethernet:
+
+   Connection-specific DNS Suffix  . : STATEFUL.com
+   Description . . . . . . . . . . . : Intel(R) PRO/1000 MT Network Connection
+   Physical Address. . . . . . . . . : 50-00-00-08-00-00
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   IPv6 Address. . . . . . . . . . . : 2001:db8:acad:3:aaa:db7:73ce:a6e2(Preferred)
+   Lease Obtained. . . . . . . . . . : Tuesday, December 19, 2023 1:06:09 PM
+   Lease Expires . . . . . . . . . . : Thursday, December 21, 2023 1:06:09 PM
+   IPv6 Address. . . . . . . . . . . : 2001:db8:acad:3:adfb:feb8:a22c:571a(Preferred)
+   Temporary IPv6 Address. . . . . . : 2001:db8:acad:3:c0ea:6a73:1479:5bf6(Preferred)
+   Link-local IPv6 Address . . . . . : fe80::adfb:feb8:a22c:571a%7(Preferred)
+   Default Gateway . . . . . . . . . : fe80::1%7
+   DHCPv6 IAID . . . . . . . . . . . : 72351744
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-2D-13-4A-8A-50-00-00-08-00-00
+   DNS Servers . . . . . . . . . . . : 2001:db8:acad::254
+   NetBIOS over Tcpip. . . . . . . . : Disabled
+   Connection-specific DNS Suffix Search List :
+                                       STATEFUL.com
+```
+
